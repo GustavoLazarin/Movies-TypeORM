@@ -1,11 +1,9 @@
 import { Movie } from "../entities";
 import { IMoviesPaginationParams, IMoviesReturn, TCreateMovie, TUpdateMovie } from "../interfaces/movies.interface";
 import { movieRepo } from "../repositories";
-import { createMovieSchema, updateMovieSchema } from "../schemas/movie.schema";
 
 export const createMovieService = async (data: TCreateMovie) => {
-    const movieBody = createMovieSchema.parse(data);
-    const NewMovie: Movie = movieRepo.create(movieBody);
+    const NewMovie: Movie = movieRepo.create(data);
 
     await movieRepo.save(NewMovie);
 
@@ -35,9 +33,7 @@ export const getAllMoviesService = async ({page, perPage, sort, order, prevPage,
 }
 
 export const updateMovieService = async (movie: Movie, data: TUpdateMovie) => {
-    const movieBody = updateMovieSchema.parse(data);
-
-    const updatedMovie: Movie =  await movieRepo.save({...movie, ...movieBody});
+    const updatedMovie: Movie =  await movieRepo.save({...movie, ...data});
 
     return updatedMovie;
 }

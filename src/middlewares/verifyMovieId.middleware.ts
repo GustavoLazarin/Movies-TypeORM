@@ -14,4 +14,4 @@ export const verifyMovieId = async (req: Request, res: Response, next: NextFunct
     res.locals.movie = foundMovie;
 
     return next();
-}
+};

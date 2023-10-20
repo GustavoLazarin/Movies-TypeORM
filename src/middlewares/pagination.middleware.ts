@@ -1,4 +1,4 @@
-import "dotenv/config"
+import "dotenv/config";
 import { NextFunction, Request, Response } from "express";
 import { IMoviesPaginationParams } from "../interfaces/movies.interface";
 
@@ -36,4 +36,4 @@ export const pagination = (req: Request, res: Response, next: NextFunction) => {
     res.locals.pagination = pagination;
 
     return next();
-}
+};

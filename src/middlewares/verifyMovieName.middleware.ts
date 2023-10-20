@@ -13,4 +13,4 @@ export const verifyMovieName = async (req: Request, res: Response, next: NextFun
     }
 
     return next();
-}
+};

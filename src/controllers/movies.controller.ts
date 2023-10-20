@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { createMovieService, deleteMovieService, getAllMoviesService, updateMovieService } from "../services/movies.services";
 
 export const createMovieController = async (req: Request, res: Response) => {
-    const newMovie = await createMovieService(req.body);
+    const newMovie = await createMovieService(res.locals.validatedBody);
 
     return res.status(201).json(newMovie);
 }
@@ -14,7 +14,7 @@ export const getMoviesController = async (req: Request, res: Response) => {
 }
 
 export const updateMovieController = async (req: Request, res: Response) => {
-    const updatedMovie = await updateMovieService(res.locals.movie, req.body);
+    const updatedMovie = await updateMovieService(res.locals.movie, res.locals.validatedBody);
 
     return res.status(200).json(updatedMovie);
 }
