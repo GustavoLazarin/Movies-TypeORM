@@ -14,6 +14,10 @@ export const createMovieService = async (data: TCreateMovie) => {
 
 export const getAllMoviesService = async ({page, perPage, sort, order, prevPage, nextPage}: IMoviesPaginationParams) => {
 
+    if (sort === "id") {
+        order = "asc";
+    }
+
     const [movies, count] = await movieRepo.findAndCount({
         take: perPage,
         skip:  page,
